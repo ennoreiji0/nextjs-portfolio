@@ -1,3 +1,4 @@
+'use client';
 import Link from "next/link"
 
 export default function Home(){
@@ -15,9 +16,10 @@ export default function Home(){
       </div>
       <div>
         <h2 className="center">作ったもの</h2>
-        <p className="danraku"><a href="https://github.com/ennoreiji0/nextjs-portfolio">・GitHubへのリンクはこちら</a></p>
-        <p className="danraku"><Link href="/sheep">・二進法で羊を数えるゲーム(なかなか寝付けない日にぜひ!)</Link></p>
-        {/*<p className="danraku"><Link >・「人力AI募集中」(PC限定のゲームです)</Link></p>*/}
+        <p className="danraku">・GitHubへのリンクは<a href="https://github.com/ennoreiji0/nextjs-portfolio" target="_blank">こちら</a></p>
+        <p className="danraku">・<Link href="/sheep">二進法で羊を数えるゲーム</Link>(なかなか寝付けない日にぜひ!)</p>
+        <p className="danraku">・<Link href="/AI">「人力AI募集中」</Link>(PC限定のゲームです)</p>
+        <p className="danraku">・CDMAについての自由研究</p>
       </div>
       <div>
         <h2 className="center">実績</h2>
