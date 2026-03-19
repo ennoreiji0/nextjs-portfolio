@@ -15,7 +15,7 @@ export default function Home(){
       </div>
       <div>
         <h2 className="center">作ったもの</h2>
-        <p className="danraku"><a href="https://github.com/ennoreiji0/portfolio">・GitHubへのリンクはこちら</a></p>
+        <p className="danraku"><a href="https://github.com/ennoreiji0/nextjs-portfolio">・GitHubへのリンクはこちら</a></p>
         <p className="danraku"><Link href="/sheep">・二進法で羊を数えるゲーム(なかなか寝付けない日にぜひ!)</Link></p>
         {/*<p className="danraku"><Link >・「人力AI募集中」(PC限定のゲームです)</Link></p>*/}
       </div>
@@ -24,7 +24,6 @@ export default function Home(){
         <p className="danraku">・ITパスポート取得(中3)</p>
         <p className="danraku">・セキュリティミニキャンプ参加(中3)</p>
         <p className="danraku">・情報オリンピック2次予選進出(高1)</p>
-        <p>aaa</p>
       </div>
     </div>
     )
