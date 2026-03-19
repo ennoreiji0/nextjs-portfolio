@@ -24,6 +24,7 @@ export default function Home(){
         <p className="danraku">・ITパスポート取得(中3)</p>
         <p className="danraku">・セキュリティミニキャンプ参加(中3)</p>
         <p className="danraku">・情報オリンピック2次予選進出(高1)</p>
+        <p>aaa</p>
       </div>
     </div>
     )
