@@ -1,8 +1,8 @@
 'use client';
 import { useState,useEffect } from "react";
-import Link from "next/link";
 import { useTimer } from "../../../components/useTimer";
-
+import BackToTop from "@/components/BackToTop";
+import NormalButton from "@/components/NormalButton";
 
 interface ScoreData{
   genten1:number;
@@ -92,7 +92,7 @@ export default function GameMain({nowOdai,gentenWords,timeLimit,onNext,isLast}:Y
   }
 
   return (
-    <>
+    <div className="text-2xl">
     <div
       style={{userSelect:'none' , cursor:'default'}}
       onMouseDown={()=>{
@@ -113,7 +113,7 @@ export default function GameMain({nowOdai,gentenWords,timeLimit,onNext,isLast}:Y
                   teisei(index,!e.shiftKey)
                 }
               }}
-            className={`${isDeleted[index] ? "relative inline-block line-through" : 'relative inline-block' }`} >
+            className={`${isDeleted[index] ? "relative inline-block text-[#0f0f0f] line-through" : 'relative inline-block text-[#000000]' }`} >
               {word}
             </span>
         );
@@ -122,7 +122,7 @@ export default function GameMain({nowOdai,gentenWords,timeLimit,onNext,isLast}:Y
     </div>
     <div>
       <p>{countTimer.time}</p>
-      <p>残り時間:{gameTimer.time}</p>
+      <p className="py-10">残り時間:{gameTimer.time}</p>
     </div>
     <div>
       <p>{message}</p>
@@ -136,21 +136,21 @@ export default function GameMain({nowOdai,gentenWords,timeLimit,onNext,isLast}:Y
         </div>  
       }
       
-      
-      <button onClick={()=>hantei()} disabled={stop}>送信</button>
-      <button onClick={()=>{
+      <div className="h-15"></div>
+      <NormalButton onClick={()=>hantei()} disabled={stop}>送信</NormalButton>
+      <NormalButton onClick={()=>{
         setIsDeleted(new Array(nowOdai.length).fill(false))
       }}
       disabled={stop}
-      >最初の状態に戻す</button>
+      >最初の状態に戻す</NormalButton>
       <p>Shiftキーを押しながらなぞると単語が復活します</p>
       {finished && (
       <div>
-        <p><Link href="/">ポートフォリオのトップへ</Link></p>
-        <button onClick={onNext}>{isLast? 'タイトルに戻る':'次の問題へ進む'} </button>
+        <NormalButton onClick={onNext}>{isLast? 'タイトルに戻る':'次の問題へ進む'} </NormalButton>
+        <BackToTop/>
       </div>
       )}
     </div>
-    </>
+    </div>
   )
 }

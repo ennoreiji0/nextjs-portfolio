@@ -2,11 +2,12 @@
 import BigTitle from "@/components/BigTitle";
 import Paragraph from "@/components/Paragraph";
 import MyLink from "@/components/MyLink";
+import Header from "@/components/Header";
 
 export default function Home(){
   return (
     <div>
-      <h1 className="text-5xl font-bold text-center text-[#3333aa] mt-10">Portfolio</h1>
+      <Header>Portfolio</Header>
       <p className='text-xl text-right'>高校1年 零次</p>
       <div>
         <BigTitle>自己紹介</BigTitle>

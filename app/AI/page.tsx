@@ -1,7 +1,7 @@
 'use client';
 import { useState,useEffect } from "react";
 import MyLink from "@/components/MyLink";
-import BigTitle from "@/components/BigTitle";
+import Header from "@/components/Header";
 import Paragraph from "@/components/Paragraph";
 import BackToTop from "@/components/BackToTop";
 
@@ -9,10 +9,9 @@ export default function AI(){
   
   return (
     <>
-      <BigTitle>人力AI募集中</BigTitle>
+      <Header>人力AI募集中</Header>
       <Paragraph>
-        <MyLink href="/AI/summarize">要約処理</MyLink><br />
-        
+        <MyLink href="/AI/summarize">・文章を要約する簡単なお仕事です！</MyLink><br />
       </Paragraph>
       <BackToTop/>
     </>

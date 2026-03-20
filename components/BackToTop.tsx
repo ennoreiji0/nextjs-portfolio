@@ -2,6 +2,9 @@ import MyLink from "./MyLink";
 
 export default function BackToTop(){
   return (
-    <MyLink href="/">ポートフォリオのトップへ</MyLink>
+    <div className="pt-25 pb-10 text-2xl">
+      <MyLink href="/">トップページへ</MyLink>
+    </div>
+    
   )
 }

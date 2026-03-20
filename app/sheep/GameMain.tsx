@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from "react";
 import {useTimer} from '../../components/useTimer'
-import Link from "next/link";
+import BackToTop from "@/components/BackToTop";
+import NormalButton from "@/components/NormalButton";
 
 interface GameMainProps{
   config:{
@@ -72,21 +73,26 @@ export default function GameMain({config,onFinish} :GameMainProps){
 
   return(
     <>
-      <div>
+      <div className="text-2xl space-y-5">
       {buttons.map((btn,index)=>{
         return <button key={index} className='w-[50px] h-[50px] border border-[#333] rounded-[4px] px-2 py-1 leading-6 bg-[#3333aa] text-[#ffffff] disabled:bg-[#000000]' onClick={()=>hantenButton(index)} disabled={stop}>{btn}</button>
       })}
       <p>{countTimer.time}</p>
       <p>残り時間:{gameTimer.time}</p>
       
-      <p className='bokujo'>
-        {'羊'.repeat(odai)/*odai個だけ羊という字を書いておく */}
-      </p>
-      <p>{message}</p>
+      {!finished &&(
+        <p className='bokujo'>
+          {'羊'.repeat(odai)/*odai個だけ羊という字を書いておく */}
+        </p>
+      )
+
+      }
+      
+      <p className="text-[#c60303] font-bold">{message}</p>
       {finished && (
         <div>
-          <Link href="/">ポートフォリオのトップへ</Link>
-          <button onClick={onFinish}>ゲーム設定画面へ</button>
+          <NormalButton onClick={onFinish}>ゲーム設定画面へ</NormalButton>
+          <BackToTop/>
         </div>
       )}
       </div>

@@ -19,6 +19,7 @@ export default function Sheep(){
       ):(
         <GameMain config={gameConfig} onFinish={(()=>{setGameConfig(null)})}/>
       )}
+    
     </>
   )
 }

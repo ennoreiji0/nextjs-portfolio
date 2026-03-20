@@ -1,8 +1,10 @@
 'use client';
 import { useState,useEffect } from "react";
-import Link from "next/link";
+import NormalButton from "@/components/NormalButton";
 import GameMain from "./GameMain";
 import rand from "@/components/dougu";
+import BackToTop from "@/components/BackToTop";
+import Header from "@/components/Header";
 
 interface YoyakuProps{
   nowOdai:string[];
@@ -17,7 +19,7 @@ const odaiArr:YoyakuProps[]=[
     timeLimit:15
   },
   {
-    nowOdai:["みなさん、","今日は","楽しみに","していた","遠足","ですね","雲一つない","快晴","なのは、","みなさんが","普段","まじめに","いい子で","過ごしている","おかげだと","思います。"],
+    nowOdai:["みなさん、","今日は","楽しみに","していた","遠足","ですね。","雲一つない","快晴","なのは、","みなさんが","普段","まじめに","いい子で","過ごしている","おかげだと","思います。"],
     gentenWords:[1,4,7],
     timeLimit:25
   }
@@ -29,6 +31,7 @@ export default function Yoyaku(){
 
   const startNextGame=()=>{
     const len=nokoriOdai.length;
+    console.log(len)
     if(len===0){
       setCurrentOdai(null)
       return;
@@ -42,11 +45,28 @@ export default function Yoyaku(){
     const nextNokoriOdai=nokoriOdai.filter((_,index)=>index!=id)
     setNokoriOdai(nextNokoriOdai)
   }
+  const startNewGame=()=>{
+    const newOdai=[...odaiArr]
+    const id=rand(0,newOdai.length)
+    setCurrentOdai(newOdai[id])
+    const nextNokoriOdai=newOdai.filter((_,index)=>index!=id)
+    setNokoriOdai(nextNokoriOdai)
+  }
 
   return (
     <>
-      {!currentOdai && <button onClick={startNextGame}>ゲームスタート</button>}
-      <p><Link href="/">ポートフォリオのトップへ</Link></p>
+      
+      {!currentOdai && 
+      <>
+        <Header>文章を要約する簡単なお仕事です！</Header>
+        <p className="text-center"><NormalButton 
+          onClick={()=>{
+            startNewGame();
+          }}>お仕事スタート</NormalButton></p>
+        <BackToTop/>
+      </>
+      }
+      
       {currentOdai && <GameMain
         key={currentOdai.nowOdai.join(',')}
         {...currentOdai}
