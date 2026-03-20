@@ -1,15 +1,20 @@
 'use client';
 import { useState,useEffect } from "react";
-import Yoyaku from "./summarize/page";
-import Link from "next/link";
+import MyLink from "@/components/MyLink";
+import BigTitle from "@/components/BigTitle";
+import Paragraph from "@/components/Paragraph";
+import BackToTop from "@/components/BackToTop";
 
 export default function AI(){
   
   return (
     <>
-      <h1>人力AI募集中</h1>
-      <Link href={"/AI/summarize"}>要約処理</Link><br />
-      <p><Link href="/">ポートフォリオのトップへ</Link></p>
+      <BigTitle>人力AI募集中</BigTitle>
+      <Paragraph>
+        <MyLink href="/AI/summarize">要約処理</MyLink><br />
+        
+      </Paragraph>
+      <BackToTop/>
     </>
   )
 }
