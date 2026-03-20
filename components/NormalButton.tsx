@@ -1,4 +1,5 @@
-import { ReactNode } from "react"
+'use client';
+
 
 type Props=React.ComponentPropsWithoutRef<"button">
 

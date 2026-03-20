@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from "react";
 
 export function useTimer(initialTime: number,endString: string,initialActive: boolean=true){

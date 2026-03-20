@@ -1,3 +1,4 @@
+'use client';
 import MyLink from "./MyLink";
 
 export default function BackToTop(){
