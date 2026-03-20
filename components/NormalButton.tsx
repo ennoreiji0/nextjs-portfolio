@@ -12,7 +12,7 @@ export default function NormalButton({children , ...props}:Props){
       border-2
       border-[#5f5f5f]
       text-[#f0f0f0] 
-      px-4 py-1 mx-2 my-1 
+      px-3 py-0.5 mx-0.5 my-0.5 
       shadow-[0_5px_0_0_#999999] 
       transition-all 
       duration-100 
