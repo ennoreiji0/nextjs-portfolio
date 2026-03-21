@@ -1,0 +1,7 @@
+name="portfolio-reiji"
+pages_build_output_dir = ".next"
+
+[[d1_databases]]
+binding = "DB" # コード内で使う名前
+database_name = "portfolio-data"
+database_id = "1db29086-8c02-4e29-987a-cc29ae682c54"
