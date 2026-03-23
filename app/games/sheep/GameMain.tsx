@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from "react";
-import {useTimer} from '../../components/useTimer'
-import BackToTop from "@/components/BackToTop";
+import {useTimer} from '@/components/useTimer'
 import NormalButton from "@/components/NormalButton";
+import ToGameHome from "@/components/ToGameHome";
+import { saveGameResult } from "@/utils/supabase";
 
 interface GameMainProps{
   config:{
-    time: number;
+    playerName:string;
   };
   onFinish: ()=>void;
 }
@@ -21,7 +22,7 @@ export default function GameMain({config,onFinish} :GameMainProps){
   const [finished,setFinished]=useState<boolean>(false);
 
   const countTimer=useTimer(3,'GO!')
-  const gameTimer=useTimer(config.time,'終了',false);
+  const gameTimer=useTimer(30,'終了',false);
 
   useEffect(()=>{//countTimer(3,2,1,GO!)が終了したら
     if(countTimer.time==='GO!'){
@@ -39,8 +40,16 @@ export default function GameMain({config,onFinish} :GameMainProps){
       setStop(true);
       setMessage("得点は"+(odai-1)+"点")
       setFinished(true);
+      const handleSave=async ()=>{
+        try{
+          await saveGameResult('sheep',config.playerName,odai-1)
+        }catch (err){
+          console.log("保存失敗",err);
+        }
+      }
+      handleSave();
     }
-  },[gameTimer.time])
+  },[gameTimer.time,config.playerName,odai])
 
   const hantei=(button: number[])=>{
     let count=0;
@@ -92,7 +101,7 @@ export default function GameMain({config,onFinish} :GameMainProps){
       {finished && (
         <div>
           <NormalButton onClick={onFinish}>ゲーム設定画面へ</NormalButton>
-          <BackToTop/>
+          <ToGameHome/>
         </div>
       )}
       </div>

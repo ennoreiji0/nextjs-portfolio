@@ -5,7 +5,7 @@ import Settings from './Settings'
 import GameMain from './GameMain'
 
 interface GameConfig{
-    time:number;
+    playerName:string;
 }
 
 
@@ -15,7 +15,7 @@ export default function Sheep(){
     <>
     {/*gameConfigに値が入ったら<GameMain/>を表示*/}
       {!gameConfig ? (
-        <Settings onStart={(time:number)=>setGameConfig({time:time})}/>
+        <Settings onStart={(playerName:string)=>setGameConfig({playerName:playerName})}/>
       ):(
         <GameMain config={gameConfig} onFinish={(()=>{setGameConfig(null)})}/>
       )}
