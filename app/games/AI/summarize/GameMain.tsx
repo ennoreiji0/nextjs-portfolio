@@ -1,8 +1,9 @@
 'use client';
 import { useState,useEffect } from "react";
-import { useTimer } from "../../../components/useTimer";
+import { useTimer } from "@/components/useTimer";
 import BackToTop from "@/components/BackToTop";
 import NormalButton from "@/components/NormalButton";
+import ToGameHome from "@/components/ToGameHome";
 
 interface ScoreData{
   genten1:number;
@@ -147,7 +148,7 @@ export default function GameMain({nowOdai,gentenWords,timeLimit,onNext,isLast}:Y
       {finished && (
       <div>
         <NormalButton onClick={onNext}>{isLast? 'タイトルに戻る':'次の問題へ進む'} </NormalButton>
-        <BackToTop/>
+        <ToGameHome/>
       </div>
       )}
     </div>

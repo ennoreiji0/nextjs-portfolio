@@ -3,8 +3,8 @@ import { useState,useEffect } from "react";
 import NormalButton from "@/components/NormalButton";
 import GameMain from "./GameMain";
 import rand from "@/components/dougu";
-import BackToTop from "@/components/BackToTop";
 import Header from "@/components/Header";
+import ToGameHome from "@/components/ToGameHome";
 
 interface YoyakuProps{
   nowOdai:string[];
@@ -63,7 +63,7 @@ export default function Yoyaku(){
           onClick={()=>{
             startNewGame();
           }}>お仕事スタート</NormalButton></p>
-        <BackToTop/>
+        <ToGameHome />
       </>
       }
       

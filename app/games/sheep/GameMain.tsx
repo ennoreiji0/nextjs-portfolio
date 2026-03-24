@@ -1,12 +1,13 @@
 'use client';
 import { useState, useEffect } from "react";
-import {useTimer} from '../../components/useTimer'
-import BackToTop from "@/components/BackToTop";
+import {useTimer} from '@/components/useTimer'
 import NormalButton from "@/components/NormalButton";
+import ToGameHome from "@/components/ToGameHome";
+import { saveGameResult } from "@/utils/supabase";
 
 interface GameMainProps{
   config:{
-    time: number;
+    playerName:string;
   };
   onFinish: ()=>void;
 }
@@ -17,30 +18,37 @@ export default function GameMain({config,onFinish} :GameMainProps){
   const [odai,setOdai]=useState<number>(1);//羊が今、何匹か
   const [message,setMessage]=useState<string>('')//メッセージ
   const [stop,setStop]=useState<boolean>(true);//プレイヤーにボタンを押してほしくないときはtrue
-  //const [toTop,setToTop]=useState("")//クリア後に「トップへ」という文字を入れる。ポートフォリオのトップへ行く。
   const [finished,setFinished]=useState<boolean>(false);
 
   const countTimer=useTimer(3,'GO!')
-  const gameTimer=useTimer(config.time,'終了',false);
+  const gameTimer=useTimer(30,'終了',false);
 
   useEffect(()=>{//countTimer(3,2,1,GO!)が終了したら
     if(countTimer.time==='GO!'){
-      gameTimer.setTimerActive(true);
+      gameTimer.setTimerActive(true);//ゲームの時間をはかり始める
       
       setTimeout(()=>{
-        setStop(false);
-        countTimer.setTime('')
+        setStop(false);//ボタンを押せるようにする
+        countTimer.setTime('')//3,2,1,GOの文字を消す
       },1000)
     }
   },[countTimer.time])
 
   useEffect(()=>{//プレイ時間が終了したら
     if(gameTimer.time=='終了'){
-      setStop(true);
+      setStop(true);//ボタンを押せなくする
       setMessage("得点は"+(odai-1)+"点")
       setFinished(true);
+      const handleSave=async ()=>{
+        try{
+          await saveGameResult('sheep',config.playerName,odai-1)//データベースに保存
+        }catch (err){
+          console.log("保存失敗",err);
+        }
+      }
+      handleSave();
     }
-  },[gameTimer.time])
+  },[gameTimer.time,config.playerName,odai])
 
   const hantei=(button: number[])=>{
     let count=0;
@@ -66,7 +74,7 @@ export default function GameMain({config,onFinish} :GameMainProps){
 
   const hantenButton=(index: number)=>{//index番目の0と1を切り替える
     const newButtons=[...buttons];
-    newButtons[index]=newButtons[index]===0?1:0;
+    newButtons[index]= newButtons[index]===0 ? 1:0;
     setButtons(newButtons);
     hantei(newButtons)
   }
@@ -75,7 +83,10 @@ export default function GameMain({config,onFinish} :GameMainProps){
     <>
       <div className="text-2xl space-y-5">
       {buttons.map((btn,index)=>{
-        return <button key={index} className='w-[50px] h-[50px] border border-[#333] rounded-[4px] px-2 py-1 leading-6 bg-[#3333aa] text-[#ffffff] disabled:bg-[#000000]' onClick={()=>hantenButton(index)} disabled={stop}>{btn}</button>
+        return <button key={index} 
+        className='w-[50px] h-[50px] border border-[#333] rounded-[4px] px-2 py-1 leading-6 bg-[#3333aa] text-[#ffffff] disabled:bg-[#000000]' 
+        onClick={()=>hantenButton(index)} 
+        disabled={stop}>{btn}</button>
       })}
       <p>{countTimer.time}</p>
       <p>残り時間:{gameTimer.time}</p>
@@ -92,7 +103,7 @@ export default function GameMain({config,onFinish} :GameMainProps){
       {finished && (
         <div>
           <NormalButton onClick={onFinish}>ゲーム設定画面へ</NormalButton>
-          <BackToTop/>
+          <ToGameHome/>
         </div>
       )}
       </div>

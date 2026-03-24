@@ -10,10 +10,10 @@ export default function NormalButton({children , ...props}:Props){
       cursor-pointer 
       rounded-full 
       bg-[#3333dd] 
-      border-2
+      border-1
       border-[#5f5f5f]
       text-[#f0f0f0] 
-      px-3 py-0.5 mx-0.5 my-0.5 
+      px-3 py-1
       shadow-[0_5px_0_0_#999999] 
       transition-all 
       duration-100 
