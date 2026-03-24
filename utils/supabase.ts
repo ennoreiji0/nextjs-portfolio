@@ -16,3 +16,16 @@ export const saveGameResult = async (gameName: string, playerName: string, score
   if (error) throw error;
   return data;
 }
+
+export const getHighScores=async(gameName:string,limit=10)=>{
+  const supabase = createClient()
+  const {data,error}=await supabase
+    .from('game-results')
+    .select('player_name, score')
+    .eq('game_name',gameName)
+    .order('score',{ascending:false})
+    .limit(limit)
+
+    if(error)throw error;
+    return data;
+}
