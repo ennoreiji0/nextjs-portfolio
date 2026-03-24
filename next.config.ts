@@ -1,11 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export', // これ
+  /* output: 'export' は消す！ */
   images: {
-    unoptimized: true, 
+    unoptimized: true,
   },
-  trailingSlash: true,
 };
 
 export default nextConfig;

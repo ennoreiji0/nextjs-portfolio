@@ -15,7 +15,7 @@ export default function GameHome(){
         <Header>ツール一覧</Header>
           <Paragraph>
             <div>
-                <p><MyLink href="tools/calculator">電卓</MyLink></p>
+                <p><MyLink href="/tools/calculator">電卓</MyLink></p>
                 <Explain>
                     <p>左から順番にしか計算できません……すみません
                     </p>
