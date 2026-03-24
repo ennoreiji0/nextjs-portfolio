@@ -38,7 +38,7 @@ export default function Home(){
           <div>
             <p>・ツールは<MyLink href="/tools">こちら</MyLink></p>
             <Explain>
-              <p>ツールを作りました。</p>
+              <p>ツールを作りました</p>
             </Explain>
           </div>
           <div>
